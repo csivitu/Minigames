@@ -1,0 +1,14 @@
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #1a162a; 
+}
+input {
+    position: absolute;
+    z-index: 100;
+    top: 20px;
+    left: 20px;
+}

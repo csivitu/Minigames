@@ -1,0 +1,48 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+#button1 {
+  background-color: chocolate;
+  color: white;
+  font-size: 25px;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+#canvas1 {
+  width: auto;
+  height: 95vh;
+  border: 4px solid black;
+  font-family: Orbitron;
+}
+
+#fname {
+  width: 25vw;
+  height: 3vw;
+  border-radius: 10px;
+  font-size: larger;
+  padding: 2%;
+}
+
+#label1 {
+  font-family: Cambria;
+  font-size: xx-large;
+  color: white;
+}
+.container {
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

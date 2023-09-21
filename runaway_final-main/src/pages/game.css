@@ -1,0 +1,37 @@
+@import 'fonts.css';
+
+.Score{
+    position: absolute;
+    top: 13%;
+    left:47.5%;
+    z-index:1;
+    text-shadow:1px 4px 8px rgba(0,0,0,0.5);
+    size:12px;
+    font-family: 'retro', sans-serif;
+}
+body{
+    height: 100vh;
+} 
+.playingarea{
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%); 
+    width: 800px;
+    height: 600px;
+    background-color: #faedfc;
+    box-shadow: 0 0 10px 3px #FB298D;
+    border-radius: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+
+}
+.playingarea:hover{
+    box-shadow:0 0 10px 7px #FB298D;
+}
+.mainplayer{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 9999;
+}

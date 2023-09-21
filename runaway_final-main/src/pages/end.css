@@ -1,0 +1,61 @@
+@import 'fonts.css';
+
+.ScoreContainer{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:30%;
+    
+}
+
+.Replay{
+    position: absolute;
+    top: 13%;
+    z-index: 9999;
+    border: none;
+    background-color: transparent;
+    cursor: pointer; 
+    transition: transform 0.3s;
+    padding-top: 4px;
+    padding-right:4px;
+}
+.replaybtn{
+    width:100px
+}
+
+.Replay:hover {
+    transform: scale(1.1); 
+}
+
+.Replay:active {
+    transform: scale(0.9); 
+}
+
+.scoreText{
+    position: absolute;
+    font-size: 30px;
+    bottom: 85.5%;
+    z-index: 999;
+    font-family: 'retro', sans-serif;
+}
+.container{
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 10px 3px #FB298D;
+    border-radius: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #faedfc;
+}
+
+.container:hover{
+    box-shadow: 0 0 10px 7px #FB298D;
+}

@@ -1,0 +1,7 @@
+# add a mainmenu, that shows how to start the game the game
+# allow the player to play again instead of running
+# fix the laser position coming from the enemies
+# add a boss that has more health and spawns after a particular wave of enemy spawning
+# fix the position of laser coming from the player
+# make sure the health bar stays within the game window
+# add player movement with the arrow keys

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUBBLY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button_wrapper">
+            <a href="piranha/index.html"><button></button>
+            <div class="button_label">
+			
+                PLAY
+            </div>
+			</a>
+        </div>
+		
+        <div class="button_wrapper">
+            <a href="info/index.html" target="_blank"><button></button>
+            <div class="button_label">
+                INFO
+            </div>
+			</a>
+        </div>
+
+        <div class="button_wrapper">
+			<a href="https://hackstory.in/">
+            <button></button>
+            <div class="button_label">
+                EXIT
+            </div>
+			</a>
+        </div>
+    </div>
+    <svg>
+        <defs>
+            <filter id='shake0'>
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" seed="0"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="7"/>
+            </filter>
+            <filter id='shake1'>
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" seed="1"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="5"/>
+            </filter>
+            <filter id='shake2'>
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" seed="2"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="8"/>
+            </filter>
+            <filter id='shake3'>
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" seed="3"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6"/>
+            </filter>
+            <filter id='shake4'>
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" seed="4"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="4"/>
+            </filter>
+        </defs>
+    </svg>
+</body>
+</html>
