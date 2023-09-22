@@ -271,13 +271,21 @@ let rAF = null;
 let gameOver = false;
 
 function updateScore(clearedLines) {
-  const lineScores = [0, 1]; 
-  score += lineScores[clearedLines]; 
-  level = level + 1; 
-  updateSpeed(level);
+  const lineScores = [0, 1];
+  score += lineScores[clearedLines];
+  count += clearedLines;
+
+  if (count >= 5) {
+    level++;
+    count -= 5; 
+    updateSpeed(level);
+  }
+
   const scoreElement = document.getElementById('score');
   scoreElement.textContent = `Score: ${score}`;
+  drawScore();
 }
+
 
 function drawScore() {
   const rowsElement = document.getElementById('rows');
