@@ -394,6 +394,12 @@ document.addEventListener('keydown', function(e) {
 
     tetromino.row = row;
   }
+  if (e.which === 32) { 
+    const matrix = rotate(tetromino.matrix);
+    if (isValidMove(matrix, tetromino.row, tetromino.col)) {
+      tetromino.matrix = matrix;
+    }
+  }
 });
 
 rAF = requestAnimationFrame(loop);
