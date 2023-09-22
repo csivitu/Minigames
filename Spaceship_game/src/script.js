@@ -116,7 +116,20 @@ canvas.addEventListener(
   },
   false
 );
-
+document.addEventListener(
+  "keydown",
+  function (event) {
+    if (event.code === "Space") {
+      if (gameJustStarted) {
+        gameJustStarted = false;
+        animate();
+      } else {
+        buttonClicked();
+      }
+    }
+  },
+  false
+);
 //Coins
 const coinImage = new Image();
 coinImage.src = "src/coin-2.png";
