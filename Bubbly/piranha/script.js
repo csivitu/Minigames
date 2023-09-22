@@ -17,9 +17,10 @@ let track1playing = false;//checking which track is being played
 let track2playing = false;
 playButton.addEventListener('click', () => {//when first playbutton is pressed
 	if (track2playing == true){
+		soundtrack1.pause();
 	}
 	soundtrack.play();
-	track1playing= false;
+	track1playing= true;
 
 });
 let soundtrack1= document.getElementById('soundtrack1');
@@ -27,10 +28,10 @@ let playButton1 = document.getElementById('playButton1');
 
 playButton1.addEventListener('click', () => {//when second play button is pressed
 	if (track1playing == true){
-		
+		soundtrack.pause();
 	}
 	soundtrack1.play();
-	track2playing = false;
+	track2playing = true;
 });
 
 let stop = document.getElementById('stopButton');
