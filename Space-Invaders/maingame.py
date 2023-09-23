@@ -11,12 +11,12 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("ISTE_Pygame")
 #add a mainmenu, that shows how to start the game, and how to quit the game with a button to start the game and a button to quit the game in pygame
 
-RED_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_red_small.png"))
-GREEN_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_green_small.png"))
-BLUE_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_blue_small.png"))
-BOSS = pygame.image.load(os.path.join("Space-Invaders", "goblin2.png"))
+RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_red_small.png"))
+GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_green_small.png"))
+BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_blue_small.png"))
+BOSS = pygame.image.load(os.path.join("assets", "goblin2.png"))
 # Load the background image
-BG = pygame.transform.scale(pygame.image.load(os.path.join("Space-Invaders", "background-black.png")), (WIDTH, HEIGHT))
+BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
 
 # ship ship
 # Define the colors
@@ -25,19 +25,19 @@ BLACK = (0, 0, 0)
 GRAY = (128, 128, 128)
 FONT = pygame.font.SysFont("comicsansms", 48)
 
-YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "vibhor_ship.png"))
+YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "vibhor_ship.png"))
 
 # lasers
-RED_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_red.png"))
-GREEN_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_green.png"))
-BLUE_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_blue.png"))
-YELLOW_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_yellow.png"))
+RED_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_red.png"))
+GREEN_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_green.png"))
+BLUE_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_blue.png"))
+YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"))
 class Button:
     """A class to represent a button."""
 
 # background
-BG = pygame.transform.scale(pygame.image.load(os.path.join("Space-Invaders", "background-black.png")), (WIDTH, HEIGHT))
-    def __init__(self, text, pos):
+BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
+def __init__(self, text, pos):
         """Initializes the button."""
         self.text = text
         self.pos = pos
@@ -75,22 +75,22 @@ def game():
 
     def off_screen(self, height):
         return not(self.y <= height and self.y >= 0)
-    RED_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_red_small.png"))
-    GREEN_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_green_small.png"))
-    BLUE_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "pixel_ship_blue_small.png"))
-    BOSS = pygame.image.load(os.path.join("Space-Invaders", "goblin2.png"))
+    RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_red_small.png"))
+    GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_green_small.png"))
+    BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_blue_small.png"))
+    BOSS = pygame.image.load(os.path.join("assets", "goblin2.png"))
 
     def collision(self, obj):
         return collide(self, obj)
     # ship ship
 
-    YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("Space-Invaders", "vibhor_ship.png"))
+    YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "vibhor_ship.png"))
 
     # lasers
-    RED_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_red.png"))
-    GREEN_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_green.png"))
-    BLUE_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_blue.png"))
-    YELLOW_LASER = pygame.image.load(os.path.join("Space-Invaders", "pixel_laser_yellow.png"))
+    RED_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_red.png"))
+    GREEN_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_green.png"))
+    BLUE_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_blue.png"))
+    YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"))
 
 class Ship:
     COOLDOWN = 30
@@ -465,12 +465,12 @@ def main():
                 enemies.remove(enemy)
 
         player.move_lasers(-laser_vel, enemies)
-            if lost:
+        if lost:
                 lost_label = lost_font.render("YOU LOSER!!", 2, (255,255,255))
                 WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 100))
 
 
-            pygame.display.update()
+        pygame.display.update()
 
         while run:
             clock.tick(FPS)
@@ -484,7 +484,14 @@ def main():
                 if lost_count > FPS * 3:
                     run = False
                 else:
-                    continue               
+                    continue  
+                enemies.clear()
+                keys = pygame.key.get_pressed()
+                if(keys[pygame.K_r]):
+                    lost = False
+                    lives = 3
+                    level = 0
+                    wave_length = 0             
 
 
             if len(enemies) == 0:
@@ -587,6 +594,6 @@ main_menu()
 
 
 
-    pygame.quit()        
+pygame.quit()        
 
 main()
