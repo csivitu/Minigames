@@ -28,6 +28,15 @@ gameOverSound = document.createElement("audio");
 gameOverSound.src = "src/explosion.wav";
 
 let highScore = 0;
+let cookies = document.cookie.split(';');
+for (let i = 0; i < cookies.length; i++) {
+  let cookie = cookies[i].trim();
+  if (cookie.startsWith("highScore=")) {
+    let highScoreValue = cookie.substring("highScore=".length, cookie.length);
+      highScore = parseInt(highScoreValue);
+    break;
+  }
+}
 
 let animationId;
 let score = 0;
@@ -116,7 +125,20 @@ canvas.addEventListener(
   },
   false
 );
-
+document.addEventListener(
+  "keydown",
+  function (event) {
+    if (event.code === "Space") {
+      if (gameJustStarted) {
+        gameJustStarted = false;
+        animate();
+      } else {
+        buttonClicked();
+      }
+    }
+  },
+  false
+);
 //Coins
 const coinImage = new Image();
 coinImage.src = "src/coin-2.png";
@@ -300,6 +322,7 @@ function drawGameOverScreen() {
     ctx.fillText("High Score: " + highScore, 330, 530);
   }
   ctx.fillText("click to retry", 340, 700);
+  document.cookie = "highScore=" + highScore + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 
 function drawHowToPlayScreen() {

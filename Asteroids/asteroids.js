@@ -36,7 +36,8 @@ function SetupCanvas(){
     document.body.addEventListener("keyup", function(e){
         keys[e.keyCode] = false;
         if(e.keyCode == 32){
-            bullets.push(new Bullet(ship.angle));
+            const bulletSpeed = Math.sqrt(ship.velX + ship.velY ** 2) + 4;
+            bullets.push(new Bullet(ship.angle, bulletSpeed));
         }
     });
 
@@ -84,7 +85,7 @@ class Ship {
     }
 
     Rotate(dir){
-        this.angle += this.rotateSpeed;
+        this.angle += dir*this.rotateSpeed;
     }
 
 
@@ -190,14 +191,14 @@ Draw() {
 
 
 class Bullet{
-    constructor(angle){
+    constructor(angle,speed){
         this.visible = true;
         this.x = ship.tipX;
         this.y = ship.tipY;
         this.angle = angle;
         this.height = 4*scale;
         this.width = 4*scale;
-        this.speed = 4;
+        this.speed = speed;
         this.velX = 0;
         this.velY = 0;
     }
@@ -325,6 +326,7 @@ function DrawLives(){
 function Start(){
     ctx.clearRect(0,0,canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
+    ctx.font = '21px Aadhunik';
     ctx.fillText('ASTEROIDS ', canvasWidth / 2 - 120, canvasWidth / 2 - 250);
 
     ctx.fillText("Controls: WASD or Cursor Keys to Move Ship. ", canvasWidth / 2 - 200, canvasWidth / 2 - 200);
@@ -371,7 +373,7 @@ function Render(){
     // Canvas Reset
     ctx.clearRect(0,0,canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
-    ctx.font = '21px Arial';
+    ctx.font = '21px Aadhunik';
     if(!gameover && lives > 0){
         ctx.fillText('SCORE: ' + score.toString(), 20, 35);
         ctx.fillText('LIVES: ', canvasWidth-200, 35);
@@ -419,6 +421,7 @@ function Render(){
                     bullets[m].visible = false;
 
                     if(asteroids[l].level === 1){
+                        score += 5;
                         asteroids.push(new Asteroid(
                             asteroids[l].x - 5,
                             asteroids[l].y - 5,
@@ -438,6 +441,7 @@ function Render(){
                     }
 
                     else if(asteroids[l].level === 2){
+                        score += 10;
                         asteroids.push(new Asteroid(
                             asteroids[l].x - 5,
                             asteroids[l].y - 5,
@@ -455,7 +459,9 @@ function Render(){
                             Math.floor(asteroids[l].radius * 0.6) - 2)
                         );                          
                     }
-                    
+                    if(asteroids[l].level === 3){
+                        score += 20;
+                    }
                     asteroids.splice(l,1);
                     bullets.splice(m,1);
                     break loop1;
