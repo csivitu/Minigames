@@ -214,7 +214,7 @@ class Bullet {
     this.y = canvas.height / 2;
     this.radius = 10;
     this.distance;
-    this.angle = Math.random() * 2 * Math.PI;
+    this.angle = (angle-(Math.PI/9)) + Math.random() * ((Math.PI/(3.5))+(Math.PI/9));
     this.speed = 100 + 50 * level;
   }
   draw() {
