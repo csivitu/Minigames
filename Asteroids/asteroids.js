@@ -84,7 +84,7 @@ class Ship {
     }
 
     Rotate(dir){
-        this.angle += this.rotateSpeed;
+        this.angle += dir*this.rotateSpeed;
     }
 
 
