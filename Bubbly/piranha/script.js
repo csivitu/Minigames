@@ -35,8 +35,6 @@ playButton1.addEventListener('click', () => {//when second play button is presse
 
 let stop = document.getElementById('stopButton');
 stop.addEventListener('click',() => {
-	soundtrack.pause();
-	soundtrack1.pause();
 	soundtrack.currentTime = 0;
 	soundtrack1.currentTime = 0;
 	track1playing = false;
