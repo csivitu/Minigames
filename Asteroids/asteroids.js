@@ -419,6 +419,7 @@ function Render(){
                     bullets[m].visible = false;
 
                     if(asteroids[l].level === 1){
+                        score += 5;
                         asteroids.push(new Asteroid(
                             asteroids[l].x - 5,
                             asteroids[l].y - 5,
@@ -438,6 +439,7 @@ function Render(){
                     }
 
                     else if(asteroids[l].level === 2){
+                        score += 10;
                         asteroids.push(new Asteroid(
                             asteroids[l].x - 5,
                             asteroids[l].y - 5,
@@ -455,7 +457,9 @@ function Render(){
                             Math.floor(asteroids[l].radius * 0.6) - 2)
                         );                          
                     }
-                    
+                    if(asteroids[l].level === 3){
+                        score += 20;
+                    }
                     asteroids.splice(l,1);
                     bullets.splice(m,1);
                     break loop1;
