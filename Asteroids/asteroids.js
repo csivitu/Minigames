@@ -36,7 +36,8 @@ function SetupCanvas(){
     document.body.addEventListener("keyup", function(e){
         keys[e.keyCode] = false;
         if(e.keyCode == 32){
-            bullets.push(new Bullet(ship.angle));
+            const bulletSpeed = Math.sqrt(ship.velX + ship.velY ** 2) + 4;
+            bullets.push(new Bullet(ship.angle, bulletSpeed));
         }
     });
 
@@ -190,14 +191,14 @@ Draw() {
 
 
 class Bullet{
-    constructor(angle){
+    constructor(angle,speed){
         this.visible = true;
         this.x = ship.tipX;
         this.y = ship.tipY;
         this.angle = angle;
         this.height = 4*scale;
         this.width = 4*scale;
-        this.speed = 4;
+        this.speed = speed;
         this.velX = 0;
         this.velY = 0;
     }
