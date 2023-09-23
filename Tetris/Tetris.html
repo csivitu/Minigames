@@ -80,11 +80,12 @@
 </head>
 <div class="controls">
   <h3>Controls</h3>
-  <h5>Up Arrow - For rotation</h5>
-  <h5>Left Arrow - For moving blocks to the left</h5>
-  <h5>Right Arrow - For moving blocks to the right</h5>
-  <h5>Down Arrow - For moving blocks to the bottom</h5>
-  <h5>Space bar - For directly bringing the block to the bottom</h5>
+    <h5>Up Arrow - Rotate clockwise</h5>
+    <h5>Left Arrow - Move Left</h5>
+    <h5>Right Arrow - Move Right</h5>
+    <h5>Down Arrow - Move Down</h5>
+    <h5>Space bar - Drop</h5>
+    <h5>X - Rotate counterclockwise</h5> 
 </div>
 <div id="game-container">
   <canvas width="320" height="640" id="game"></canvas>
@@ -132,13 +133,39 @@ function getNextTetromino() {
   };
 }
 
-function rotate(matrix) {
-  const N = matrix.length - 1;
-  const result = matrix.map((row, i) =>
-    row.map((val, j) => matrix[N - i][j])
-  );
+function rotate(matrix, direction) {
+  const N = matrix.length;
+  const rotatedMatrix = [];
 
-  return result;
+  // Initialize the rotatedMatrix with empty values
+  for (let i = 0; i < N; i++) {
+    rotatedMatrix[i] = new Array(N).fill(0);
+  }
+
+  if (direction === 'clockwise') {
+    // Perform a 90-degree clockwise rotation
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        rotatedMatrix[j][N - 1 - i] = matrix[i][j];
+      }
+    }
+  } else if (direction === 'counterclockwise') {
+    // Perform a 90-degree counterclockwise rotation
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        rotatedMatrix[N - 1 - j][i] = matrix[i][j];
+      }
+    }
+  } else if (direction === '180degrees') {
+    // Perform a 180-degree rotation
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        rotatedMatrix[N - 1 - i][N - 1 - j] = matrix[i][j];
+      }
+    }
+  }
+
+  return rotatedMatrix;
 }
 
 function isValidMove(matrix, cellRow, cellCol) {
@@ -369,12 +396,21 @@ document.addEventListener('keydown', function(e) {
       return;
     }
 
-  if (e.which === 38) {
-    const matrix = rotate(tetromino.matrix);
-    if (isValidMove(matrix, tetromino.row, tetromino.col)) {
-      tetromino.matrix = matrix;
-    }
-  }
+    else if (e.which === 38) {
+        // Up Arrow - Rotate Tetromino (Clockwise)
+        tetromino.matrix = rotate(tetromino.matrix, 'clockwise');
+        if (!isValidMove(tetromino.matrix, tetromino.row, tetromino.col)) {
+          // Revert the rotation if it's not a valid move
+          tetromino.matrix = rotate(tetromino.matrix, 'counterclockwise');
+        }
+      } else if (e.which === 88 || e.which === 67) {
+        // "X" or "C" key - Rotate Tetromino (Counterclockwise)
+        tetromino.matrix = rotate(tetromino.matrix, 'counterclockwise');
+        if (!isValidMove(tetromino.matrix, tetromino.row, tetromino.col)) {
+          // Revert the rotation if it's not a valid move
+          tetromino.matrix = rotate(tetromino.matrix, 'clockwise');
+        }
+      }
 
   if(e.which === 40) {
     const row = tetromino.row + 1;
