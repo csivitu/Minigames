@@ -359,7 +359,7 @@ document.addEventListener('keydown', function(e) {
       tetromino.col = col;
     }
   }
-  if (e.which === 48) {
+  if (e.which === 32) {
       let row = tetromino.row;
       while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
         row++;
