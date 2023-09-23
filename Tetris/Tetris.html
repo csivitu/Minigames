@@ -133,11 +133,14 @@ function getNextTetromino() {
 }
 
 function rotate(matrix) {
-  const N = matrix.length - 1;
-  const result = matrix.map((row, i) =>
-    row.map((val, j) => matrix[N - i][j])
-  );
-
+  const N = matrix.length;
+  const result = [];
+  for (let i = 0; i < N; i++) {
+    result[i] = [];
+    for (let j = 0; j < N; j++) {
+      result[i][j] = matrix[N - j - 1][i];
+    }
+  }
   return result;
 }
 
