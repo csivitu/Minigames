@@ -189,7 +189,7 @@ class Player(Ship):
             else:
                 for obj in objs:
                     if laser.collision(obj):
-                        objs.remove(obj)     
+                        objs.health-=100
                         self.lasers.remove(laser)
     def healthbar(self, window):
         pygame.draw.rect(window, (255,0,0), (self.x, self.y + self.ship_img.get_height() , self.ship_img.get_width(), 10))
@@ -204,7 +204,7 @@ class Enemy(Ship):
     COLOR_MAP = { "red":(RED_SPACE_SHIP, RED_LASER),
                   "green": (GREEN_SPACE_SHIP, GREEN_LASER),  
                   "blue" : (BLUE_SPACE_SHIP, BLUE_LASER),
-                  "blue": (BOSS, GREEN_LASER)
+                  "boss": (BOSS, GREEN_LASER)
     }
 
     def shoot(self):
@@ -328,7 +328,7 @@ def main():
                 else:
                     for obj in objs:
                         if laser.collision(obj):
-                            objs.remove(obj)     
+                            objs.health-=100  
                             self.lasers.remove(laser)
         def healthbar(self, window):
             pygame.draw.rect(window, (255,0,0), (self.x, self.y + self.ship_img.get_height() + 10, self.ship_img.get_width(), 10))
@@ -343,7 +343,7 @@ def main():
         COLOR_MAP = { "red":(RED_SPACE_SHIP, RED_LASER),
                     "green": (GREEN_SPACE_SHIP, GREEN_LASER),  
                     "blue" : (BLUE_SPACE_SHIP, BLUE_LASER),
-                    "blue": (BOSS, GREEN_LASER)
+                    "boss": (BOSS, GREEN_LASER)
         }
 
         def shoot(self):
@@ -497,10 +497,13 @@ def main():
             if len(enemies) == 0:
                 level += 1
                 wave_length += 5
-
-                for i in range(wave_length):
-                    enemy = Enemy(random.randrange(50, WIDTH-100), random.randrange(-800, -100), random.choice(["red", "green", "blue"])) 
-                    enemies.append(enemy)
+                if level%3==0:
+                    boss = Enemy(400,0,"boss",health=500)
+                    enemies.append(boss)
+                else:
+                    for i in range(wave_length):
+                        enemy = Enemy(random.randrange(50, WIDTH-100), random.randrange(-800, -100), random.choice(["red", "green", "blue"]))
+                        enemies.append(enemy)
 
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
