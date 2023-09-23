@@ -434,13 +434,14 @@ def main():
                 run = False
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a] and player.x - player_vel > 0: #left moving
+        if (keys[pygame.K_a] or keys[pygame.K_LEFT]) and player.x - player_vel > 0: #left moving
             player.x -= player_vel
-        if keys[pygame.K_d] and player.x + player_vel + player.get_width() <  WIDTH: #right moving
+        if (keys[pygame.K_d] or keys[pygame.K_RIGHT]) and player.x + player_vel + player.get_width() <  WIDTH: #right moving
             player.x += player_vel 
-        if keys[pygame.K_w] and player.y - player_vel > 0: #up going 
+        if (keys[pygame.K_w] or keys[pygame.K_UP]) and player.y - player_vel > 0: #up going 
             player.y -= player_vel
-        if keys[pygame.K_s] and player.y + player_vel + player.get_height() < HEIGHT-15: #down going
+        if (keys[pygame.K_s] or keys[pygame.K_DOWN]) and player.y + player_vel + player.get_height() < HEIGHT: #down going
+
             player.y += player_vel 
         if keys[pygame.K_SPACE]:
             player.shoot()     
