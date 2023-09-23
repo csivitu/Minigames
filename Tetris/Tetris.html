@@ -302,7 +302,7 @@ function updateScore(clearedLines) {
   clearSound.play();
   const lineScores = [0, 1]; 
   score += lineScores[clearedLines]; 
-  level = level + 1; 
+  level = Math.floor(score / 5) + 1; 
   updateSpeed(level);
   const scoreElement = document.getElementById('score');
   scoreElement.textContent = `Score: ${score}`;
