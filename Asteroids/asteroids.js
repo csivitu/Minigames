@@ -326,6 +326,7 @@ function DrawLives(){
 function Start(){
     ctx.clearRect(0,0,canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
+    ctx.font = '21px Aadhunik';
     ctx.fillText('ASTEROIDS ', canvasWidth / 2 - 120, canvasWidth / 2 - 250);
 
     ctx.fillText("Controls: WASD or Cursor Keys to Move Ship. ", canvasWidth / 2 - 200, canvasWidth / 2 - 200);
@@ -372,7 +373,7 @@ function Render(){
     // Canvas Reset
     ctx.clearRect(0,0,canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
-    ctx.font = '21px Arial';
+    ctx.font = '21px Aadhunik';
     if(!gameover && lives > 0){
         ctx.fillText('SCORE: ' + score.toString(), 20, 35);
         ctx.fillText('LIVES: ', canvasWidth-200, 35);
