@@ -212,10 +212,13 @@ def main():
             lost_count += 1
 
         if lost:
-            if lost_count > FPS * 3:
-                run = False
-            else:
-                continue               
+            enemies.clear()
+            keys = pygame.key.get_pressed()
+            if(keys[pygame.K_r]):
+                lost = False
+                lives = 3     
+                level = 0
+                wave_length = 0             
         
 
         if len(enemies) == 0:
