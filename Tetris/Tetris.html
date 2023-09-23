@@ -271,6 +271,8 @@ let rAF = null;
 let gameOver = false;
 
 function updateScore(clearedLines) {
+  const clearSound = document.getElementById('clearSound');
+  clearSound.play();
   const lineScores = [0, 1]; 
   score += lineScores[clearedLines]; 
   level = level + 1; 
