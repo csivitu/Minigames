@@ -214,7 +214,7 @@ function placeTetromino() {
 }
 
 function showGameOver() {
-  requestAnimationFrame(rAF);
+  requestAnimationFrame(showGameOver);
   gameOver = true;
   context.fillStyle = 'black';
   context.globalAlpha = 0.75;
