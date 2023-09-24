@@ -50,16 +50,16 @@ let ctrlKeys = function (key) {
     key !== '2' &&
     key !== '3' &&
     key !== '4' &&
-    key != '5' &&
-    key != '6' &&
-    key != '7' &&
-    key != '8' &&
+    key !== '5' &&
+    key !== '6' &&
+    key !== '7' &&
+    key !== '8' &&
     key !== '9' &&
     key !== '0' &&
-    key != '/' &&
-    key != '*' &&
-    key != '-' &&
-    key != '+'
+    key !== '/' &&
+    key !== '*' &&
+    key !== '-' &&
+    key !== '+'
   ) {
     return true;
   }
@@ -144,7 +144,15 @@ let removeUnderline = function () {
   letter[adjuster + pointer].style.textDecoration = 'none';
 };
 //Operations on a Key Press
+let pressedKeys = {};
+
 document.addEventListener('keydown', function (e) {
+  if (pressedKeys[e.key]) {
+    return;
+  }
+
+  pressedKeys[e.key] = true;
+
   if (e.key === mainText[random][pointer]) {
     removeUnderline();
     letter[adjuster + pointer].style.color = correctColor[theme];
@@ -167,6 +175,11 @@ document.addEventListener('keydown', function (e) {
   if (e.key === ' ') {
     document.getElementById(`spaceAudio${theme}`).play();
   }
+});
+
+// Reset the key when it's released
+document.addEventListener('keyup', function (e) {
+  pressedKeys[e.key] = false;
 });
 
 //Clear Everything
@@ -229,8 +242,8 @@ document.addEventListener('keydown', function (event) {
   if (
     !TimerOn &&
     ctrlKeys(event.key) &&
-    event.key != ' ' &&
-    event.key != 'Backspace'
+    event.key !== ' ' &&
+    event.key !== 'Backspace'
   ) {
     startTimer = new Date();
     TimerOn = true;
