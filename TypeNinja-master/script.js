@@ -100,7 +100,7 @@ let changeStyle = function () {
   }
   warningMsg.style.backgroundColor = underlineColor[theme];
 };
-//Changing Theme varaible using Click and Key press
+//Changing Theme variable using Click and Key press
 link0.addEventListener('click', function () {
   theme = 0;
   changeStyle();
@@ -167,7 +167,9 @@ document.addEventListener('keydown', function (e) {
     incorrectChar++;
   } else if (e.key === 'Backspace' && ctrlKeys(e.key)) {
     removeUnderline();
-    pointer--;
+    if (pointer > 0) { // Check if pointer is greater than zero before decrementing
+      pointer--;
+    }
     underline();
     letter[adjuster + pointer].style.color = defaultColor;
     counter.textContent = `${pointer} / ${mainTextSize[random]}`;
