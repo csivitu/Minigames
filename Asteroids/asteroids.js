@@ -11,6 +11,13 @@ let score = 0;
 let lives = 3;
 let gameover = false;
 let musicToggle = false;
+let gameOverPlayed = false;
+
+let gameAudio = new Audio('src/Asteroidz.mp3');
+let bulletsound = new Audio('src/SpaceGun.wav');
+let collisionSound = new Audio('src/ShipBreakdown.wav');
+let gameOverAudio = new Audio('src/GameOver.wav');
+let buttonClick = new Audio('src/ButtonClick.wav');
 
 document.addEventListener('DOMContentLoaded', SetupCanvas);
 
@@ -38,6 +45,7 @@ function SetupCanvas(){
         if(e.keyCode == 32){
             const bulletSpeed = Math.sqrt(ship.velX + ship.velY ** 2) + 4;
             bullets.push(new Bullet(ship.angle, bulletSpeed));
+            bulletsound.play();
         }
     });
 
@@ -328,6 +336,7 @@ function DrawLives(){
 
 
 function Start(){
+    gameOverPlayed = false;
     ctx.clearRect(0,0,canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
     ctx.font = '21px Aadhunik';
@@ -338,6 +347,7 @@ function Start(){
     ctx.fillText("Press R to Restart the Game Window. ", canvasWidth / 2 - 200, canvasWidth / 2 - 140);
     ctx.fillText("~ ~ ~ Hit the ENTER key to Start. ~ ~ ~", canvasWidth / 2 - 160, canvasWidth / 2 - 90);
 
+    gameAudio.play();
 
     if(asteroids.length != 0){
         for(let j=0; j<asteroids.length; j++){
@@ -348,6 +358,7 @@ function Start(){
     }
 
     if(keys[13]){
+        buttonClick.play();
         Render();
     }
     else{
@@ -389,9 +400,14 @@ function Render(){
         ctx.fillText('SCORE: ' + score.toString(), canvasWidth / 2 - 120, canvasWidth / 2 - 175); 
 
         ctx.fillText("~ ~ ~ Hit the R key to Restart. ~ ~ ~", canvasWidth / 2 - 160, canvasWidth / 2 - 110);
-     
+
         gameover = true;  
         musicToggle = false;
+    }
+    if(gameover && !gameOverPlayed){
+        gameOverAudio.play();
+        gameAudio.pause();
+        gameOverPlayed = true;
     }
 
     DrawLives();
@@ -408,6 +424,7 @@ function Render(){
                 ship.velY = 0;
                 if(lives > 0){
                     lives -= 1;
+                    collisionSound.play();
                 }
             }
         }
@@ -507,7 +524,7 @@ function Render(){
         }
     }
 
-    if(!musicToggle && !gameover){
+    if(!musicToggle && !gameover){ 
         musicToggle = true;
     }
 
