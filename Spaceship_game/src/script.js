@@ -92,6 +92,7 @@ class Player {
 
     ctx.save();
     ctx.translate(this.x, this.y);
+    ctx.rotate(this.angle - (Math.PI/2*this.direction));
     ctx.drawImage(playerLeft, 0 - 40, 0 - 40);
     ctx.restore();
   }
@@ -226,6 +227,7 @@ class Bullet {
 
     ctx.save();
     ctx.translate(this.x, this.y);
+    ctx.rotate(this.angle + Math.PI/2);
     ctx.drawImage(bulletFire, 0 - 20, 0 - 18);
     ctx.restore();
   }
