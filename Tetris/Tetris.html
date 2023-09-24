@@ -369,10 +369,10 @@ function loop() {
 }
 
 function updateSpeed(level) {
-  speed = Math.max(10, level + 35 - (3 * 5) - level);
+  speed = Math.max(10, 35 - (3 * level));
 }
 
-updateSpeed(1);
+updateSpeed(level);
 
 document.addEventListener('keydown', function(e) {
   if (gameOver) return;
