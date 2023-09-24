@@ -218,16 +218,20 @@ class Bullet{
 }
 
 
-class Asteroid{
-    constructor(x, y, radius, level, collisionRadius){
+class Asteroid {
+    constructor(x, y, radius, level, collisionRadius) {
         this.visible = true;
         this.level = level || 1;
         this.shipX = ship.getShipX();
         this.shipY = ship.getShipY();
-        this.fieldRadius = 300*scale;
+        this.fieldRadius = 300 * scale;
 
-        this.x = x || ((Math.random() < 0.5)? Math.floor(Math.random() * (this.shipX - this.fieldRadius)) : Math.floor(Math.random() * (canvasWidth - this.shipX - this.fieldRadius)));
-        this.y = y || ((Math.random() < 0.5)? Math.floor(Math.random() * (this.shipY - this.fieldRadius)) : Math.floor(Math.random() * (canvasHeight - this.shipY - this.fieldRadius)));
+        // Calculate initial positions outside the screen border
+        const randomX = Math.random() < 0.5 ? -this.fieldRadius : canvasWidth + this.fieldRadius;
+        const randomY = Math.random() < 0.5 ? -this.fieldRadius : canvasHeight + this.fieldRadius;
+
+        this.x = x || randomX;
+        this.y = y || randomY;
 
         this.speed = (1 + 0.5 * Math.floor(Math.random() * 3))*scale;
         this.rotateSpeed = 0.0001;
